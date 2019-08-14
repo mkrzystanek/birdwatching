@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -31,6 +33,10 @@ public class MongoDBConfig {
     }
 
     public MongoCustomConversions customConversions() {
-        return new MongoCustomConversions(List.of(new FigureConverter.SexConverter(), new FigureConverter.AgeConverter()));
+        List<Converter<?,?>> converters = new ArrayList<>();
+        converters.add(new FigureConverter.SexReadingConverter());
+        converters.add(new FigureConverter.AgeReadingConverter());
+
+        return new MongoCustomConversions(converters);
     }
 }

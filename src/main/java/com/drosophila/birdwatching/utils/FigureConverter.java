@@ -8,7 +8,7 @@ import org.springframework.data.convert.ReadingConverter;
 public class FigureConverter {
 
     @ReadingConverter
-    public static class SexConverter implements Converter<String, Sex> {
+    public static class SexReadingConverter implements Converter<String, Sex> {
         @Override
         public Sex convert(final String s) {
             return Sex.fromString(s);
@@ -16,9 +16,9 @@ public class FigureConverter {
     }
 
     @ReadingConverter
-    public static class AgeConverter implements Converter<String, Age> {
+    public static class AgeReadingConverter implements Converter<String, Age> {
         @Override
-        public Age convert(String s) {
+        public Age convert(final String s) {
             return Age.fromString(s);
         }
     }
