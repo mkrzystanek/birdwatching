@@ -1,7 +1,11 @@
 package com.drosophila.birdwatching.enums;
 
+import com.drosophila.birdwatching.utils.Deserializers;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.Arrays;
 
+@JsonDeserialize(using = Deserializers.SexDeserializer.class)
 public enum Sex {
     MALE("male"),
     FEMALE("female"),

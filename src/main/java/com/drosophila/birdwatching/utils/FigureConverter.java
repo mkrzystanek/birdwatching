@@ -22,5 +22,4 @@ public class FigureConverter {
             return Age.fromString(s);
         }
     }
-
 }
