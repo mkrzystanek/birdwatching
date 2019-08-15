@@ -1,7 +1,7 @@
 package com.drosophila.birdwatching.controllers;
 
 import com.drosophila.birdwatching.models.Observations;
-import com.drosophila.birdwatching.repositories.ObservationsRepository;
+import com.drosophila.birdwatching.services.ObservationsService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,27 +18,25 @@ import java.util.List;
 public class ObservationsController  {
 
     @Autowired
-    private ObservationsRepository repository;
+    private ObservationsService service;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<Observations> getAllObservations() {
-        return repository.findAll();
+        return service.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Observations getById(@PathVariable("id") ObjectId id) {
-        return repository.findBy_id(id);
+        return service.findById(id);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Observations createObservation(@Valid @RequestBody Observations observation) {
-        observation.set_id(ObjectId.get());
-        repository.save(observation);
-        return observation;
+        return service.createObservation(observation);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteObservation(@PathVariable("id") ObjectId id) {
-        repository.delete(repository.findBy_id(id));
+        service.deleteObservationById(id);
     }
 }
