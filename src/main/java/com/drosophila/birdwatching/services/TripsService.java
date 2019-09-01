@@ -1,6 +1,7 @@
 package com.drosophila.birdwatching.services;
 
 import com.drosophila.birdwatching.models.Trips;
+import com.drosophila.birdwatching.repositories.ObservationsRepository;
 import com.drosophila.birdwatching.repositories.TripsRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ public class TripsService {
 
     @Autowired
     private TripsRepository repository;
+    @Autowired
+    private ObservationsRepository observationsRepository;
 
     public List<Trips> findAll() {
         return repository.findAll();
@@ -23,6 +26,8 @@ public class TripsService {
     }
 
     public Trips createTrip(Trips trips) {
+        trips.getObservations().forEach(observations -> observations.set_id(ObjectId.get()));
+        trips.getObservations().forEach(observations -> observationsRepository.save(observations));
         trips.set_id(ObjectId.get());
         repository.save(trips);
         return trips;

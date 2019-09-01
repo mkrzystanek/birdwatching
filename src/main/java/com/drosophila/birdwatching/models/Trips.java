@@ -19,7 +19,7 @@ public class Trips {
     @Id
     @Setter
     private ObjectId _id;
-    @Setter @Getter
+    @Getter @Setter
     @DBRef(db = "observations")
     private List<Observations> observations;
     @Setter @Getter
