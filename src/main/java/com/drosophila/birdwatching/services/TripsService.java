@@ -26,11 +26,21 @@ public class TripsService {
     }
 
     public Trips createTrip(Trips trips) {
-        trips.getObservations().forEach(observations -> observations.set_id(ObjectId.get()));
-        trips.getObservations().forEach(observations -> observationsRepository.save(observations));
+        recordObservations(trips);
+        recordTrips(trips);
+        return trips;
+    }
+
+    private void recordObservations(Trips trips) {
+        trips.getObservations().forEach(observations -> {
+            observations.set_id(ObjectId.get());
+            observationsRepository.save(observations);
+        });
+    }
+
+    private void recordTrips(Trips trips) {
         trips.set_id(ObjectId.get());
         repository.save(trips);
-        return trips;
     }
 
     public void deleteTripById(ObjectId id) {
