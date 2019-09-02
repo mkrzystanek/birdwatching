@@ -5,6 +5,7 @@ import com.drosophila.birdwatching.enums.Sex;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
 
@@ -14,7 +15,11 @@ public class Deserializers {
 
         @Override
         public Age deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-            return Age.fromString(jsonParser.getText());
+            JsonNode node = jsonParser.getCodec().readTree(jsonParser);
+            if (node != null) {
+                return Age.fromString(jsonParser.getText());
+            }
+            return null;
         }
     }
 
@@ -22,7 +27,11 @@ public class Deserializers {
 
         @Override
         public Sex deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-            return Sex.fromString(jsonParser.getText());
+            JsonNode node = jsonParser.getCodec().readTree(jsonParser);
+            if (node != null) {
+                return Sex.fromString(jsonParser.getText());
+            }
+            return null;
         }
     }
 }
