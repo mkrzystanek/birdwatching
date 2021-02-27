@@ -11,7 +11,7 @@ public enum Sex {
     FEMALE("female"),
     UNKNOWN("unknown");
 
-    private String value;
+    private final String value;
 
     Sex(String value) {
         this.value = value;

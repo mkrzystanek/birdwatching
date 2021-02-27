@@ -33,9 +33,10 @@ public class MongoDBConfig {
     }
 
     public MongoCustomConversions customConversions() {
-        List<Converter<?,?>> converters = new ArrayList<>();
-        converters.add(new FigureConverter.SexReadingConverter());
-        converters.add(new FigureConverter.AgeReadingConverter());
+        List<Converter<?,?>> converters = new ArrayList<>(List.of(
+                new FigureConverter.SexReadingConverter(),
+                new FigureConverter.AgeReadingConverter()
+        ));
 
         return new MongoCustomConversions(converters);
     }

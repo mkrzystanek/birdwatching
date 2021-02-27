@@ -15,7 +15,7 @@ public enum Age {
     ADULT("Adult"),
     UNKNOWN("Unknown");
 
-    private String value;
+    private final String value;
 
     Age(String value) {
         this.value = value;
