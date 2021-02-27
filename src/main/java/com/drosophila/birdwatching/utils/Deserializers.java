@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
 
-public class Deserializers {
+public final class Deserializers {
+
+    private Deserializers() {}
 
     public static class AgeDeserializer extends JsonDeserializer<Age> {
 
@@ -17,7 +19,7 @@ public class Deserializers {
         public Age deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
             JsonNode node = jsonParser.getCodec().readTree(jsonParser);
             if (node != null) {
-                return Age.fromString(jsonParser.getText());
+                return Age.fromString(node.asText());
             }
             return null;
         }
@@ -29,7 +31,7 @@ public class Deserializers {
         public Sex deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
             JsonNode node = jsonParser.getCodec().readTree(jsonParser);
             if (node != null) {
-                return Sex.fromString(jsonParser.getText());
+                return Sex.fromString(node.asText());
             }
             return null;
         }

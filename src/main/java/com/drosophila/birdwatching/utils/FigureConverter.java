@@ -5,7 +5,9 @@ import com.drosophila.birdwatching.enums.Sex;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.ReadingConverter;
 
-public class FigureConverter {
+public final class FigureConverter {
+
+    private FigureConverter() {}
 
     @ReadingConverter
     public static class SexReadingConverter implements Converter<String, Sex> {

@@ -3,6 +3,7 @@ package com.drosophila.birdwatching.models;
 import com.drosophila.birdwatching.enums.Age;
 import com.drosophila.birdwatching.enums.Sex;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document(collection = "observations")
 @ToString
+@Builder
 public class Observations {
 
     @Id

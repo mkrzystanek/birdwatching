@@ -7,9 +7,9 @@ import java.util.Arrays;
 
 @JsonDeserialize(using = Deserializers.SexDeserializer.class)
 public enum Sex {
-    MALE("male"),
-    FEMALE("female"),
-    UNKNOWN("unknown");
+    MALE("Male"),
+    FEMALE("Female"),
+    UNKNOWN("Unknown");
 
     private final String value;
 
