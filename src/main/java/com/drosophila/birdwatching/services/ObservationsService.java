@@ -23,9 +23,7 @@ public class ObservationsService {
     }
 
     public Observations createObservation(Observations observation) {
-        observation.set_id(ObjectId.get());
-        repository.save(observation);
-        return observation;
+        return repository.save(observation);
     }
 
     public void deleteObservationById(ObjectId id) {

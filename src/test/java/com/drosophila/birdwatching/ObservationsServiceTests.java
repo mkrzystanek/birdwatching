@@ -16,6 +16,7 @@ import java.util.List;
 
 import static com.drosophila.birdwatching.TestUtils.getObservations;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ObservationsServiceTests {
@@ -57,6 +58,21 @@ public class ObservationsServiceTests {
                 "ObservationsService failed to retrieve observation by id",
                 observation,
                 retrievedObservation
+        );
+    }
+
+    @Test
+    public void saveObservation() {
+        Observations observation = observations.get(0);
+
+        when(repository.save(observation)).thenReturn(observation);
+
+        Observations savedObservation = service.createObservation(observation);
+
+        Assert.assertEquals(
+                "ObservationsService method 'createObservation()' din not return correct Observations object",
+                observation,
+                savedObservation
         );
     }
 }
