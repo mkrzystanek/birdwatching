@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.net.URI;
 import java.util.List;
 
+import static com.drosophila.birdwatching.TestUtils.getObservations;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
@@ -30,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ObservationsTest {
+public class ObservationsControllerTests {
 
     @Autowired
     MockMvc mockMvc;
@@ -42,27 +43,7 @@ public class ObservationsTest {
 
     @Before
     public void setUp() {
-        Observations observation1 = Observations.builder()
-                ._id(new ObjectId())
-                .age(Age.FLEDGLING)
-                .sex(Sex.FEMALE)
-                .habitat("Forest")
-                .localization("Europe")
-                .notes("Rare")
-                .species("Pica pica")
-                .weather("Rainstorm")
-                .build();
-        Observations observation2 = Observations.builder()
-                ._id(new ObjectId())
-                .age(Age.ADULT)
-                .sex(Sex.UNKNOWN)
-                .habitat("City park")
-                .localization("Warsaw")
-                .notes("Common")
-                .species("Corvus")
-                .weather("Sunny")
-                .build();
-        observations = List.of(observation1, observation2);
+        observations = getObservations();
     }
 
     @Test

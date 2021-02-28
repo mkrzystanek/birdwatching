@@ -4,6 +4,7 @@ import com.drosophila.birdwatching.enums.Age;
 import com.drosophila.birdwatching.enums.Sex;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,6 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "observations")
 @ToString
 @Builder
+@EqualsAndHashCode
 public class Observations {
 
     @Id
