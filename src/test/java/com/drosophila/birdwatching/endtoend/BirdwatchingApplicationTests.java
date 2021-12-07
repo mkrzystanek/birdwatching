@@ -1,4 +1,4 @@
-package com.drosophila.birdwatching;
+package com.drosophila.birdwatching.endtoend;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

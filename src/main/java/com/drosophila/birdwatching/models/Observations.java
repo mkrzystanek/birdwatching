@@ -5,7 +5,6 @@ import com.drosophila.birdwatching.enums.Sex;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,11 +12,13 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @AllArgsConstructor
 @Document(collection = "observations")
 @ToString
 @Builder
-@EqualsAndHashCode
+//@EqualsAndHashCode
 public class Observations {
 
     @Id
@@ -49,4 +50,17 @@ public class Observations {
     public void setAge(String age) { this.age = Age.fromString(age); }
 
     public String getAge() { return age.value(); }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Observations that = (Observations) o;
+        return Objects.equals(_id, that._id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(_id);
+    }
 }

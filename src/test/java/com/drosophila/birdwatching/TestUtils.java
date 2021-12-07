@@ -3,6 +3,7 @@ package com.drosophila.birdwatching;
 import com.drosophila.birdwatching.enums.Age;
 import com.drosophila.birdwatching.enums.Sex;
 import com.drosophila.birdwatching.models.Observations;
+import com.drosophila.birdwatching.models.Trips;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
@@ -35,5 +36,25 @@ public final class TestUtils {
                 .build();
 
         return List.of(observation1, observation2);
+    }
+
+    public static List<Trips> getTrips() {
+        Trips trip1 = Trips.builder()
+                ._id(new ObjectId(new Date()))
+                .observations(getObservations())
+                .biome("Forest")
+                .localization("Berner Oberland")
+                .date("12.12.2010")
+                .build();
+
+        Trips trip2 = Trips.builder()
+                ._id(new ObjectId(new Date()))
+                .observations(getObservations())
+                .biome("Plains")
+                .localization("Roztocze")
+                .date("01.01.2010")
+                .build();
+
+        return List.of(trip1, trip2);
     }
 }
