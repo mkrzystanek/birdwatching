@@ -1,4 +1,4 @@
-package com.drosophila.birdwatching;
+package com.drosophila.birdwatching.unit;
 
 import com.drosophila.birdwatching.models.Observations;
 import com.drosophila.birdwatching.repositories.ObservationsRepository;

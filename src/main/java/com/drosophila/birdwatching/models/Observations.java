@@ -2,6 +2,7 @@ package com.drosophila.birdwatching.models;
 
 import com.drosophila.birdwatching.enums.Age;
 import com.drosophila.birdwatching.enums.Sex;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -21,6 +22,7 @@ public class Observations {
 
     @Id
     @Setter
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private ObjectId _id;
     @Setter @Getter
     private String species;
